@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Contract from '@/components/Contract'
 import Footer from '@/components/Footer'
 import Service from '@/components/Service'
+import { getLawyers } from '@/lib/queries/lawyer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -17,18 +18,7 @@ const backgrounds = [
   "bg-indigo-50",
 ]
 
-export default function Home() {
-
-  const [lawyers] = useState([
-    { name: "Ali Demir", title: "Kıdemli Avukat", image: "https://cdn.devdojo.com/images/june2021/avt-03.jpg", telephone: '0512 345 67 89' },
-    { name: "Mehmet Yılmaz", title: "Kıdemli Avukat", image: "https://cdn.devdojo.com/images/june2021/avt-07.jpg", telephone: '0512 345 67 89' },
-    { name: "Zeynep Kaya", title: "Kıdemli Avukat", image: "https://cdn.devdojo.com/images/june2021/avt-20.jpg", telephone: '0512 345 67 89' },
-    { name: "Emre Kaya", title: "Kıdemli Avukat", image: "https://cdn.devdojo.com/images/june2021/avt-09.jpg", telephone: '0512 345 67 89' },
-    { name: "Burak Öztürk", title: "Avukat", image: "https://cdn.devdojo.com/images/june2021/avt-14.jpg", telephone: '0512 345 67 89' },
-    { name: "Ahmet Aksoy", title: "Avukat", image: "https://cdn.devdojo.com/images/june2021/avt-13.jpg", telephone: '0512 345 67 89' },
-    { name: "Elif Öztürk", title: "Avukat", image: "https://cdn.devdojo.com/images/june2021/avt-16.jpg", telephone: '0512 345 67 89' },
-    { name: "İrem Ak", title: "Avukat", image: "https://cdn.devdojo.com/images/june2021/avt-08.jpg", telephone: '0512 345 67 89' },
-  ])
+export default function Home({ lawyers }) {
 
   return (
     <main>
@@ -100,7 +90,7 @@ export default function Home() {
           <p className="font-medium tracking-wide text-blue-500 uppercase">EKİBİMİZ</p>
           <h2 className="relative max-w-lg mt-5 mb-10 text-4xl font-semibold leading-tight lg:text-5xl">Birbirinden Yetenekli Avukatlarımız</h2>
           <div className="grid w-full grid-cols-2 gap-10 sm:grid-cols-3 lg:grid-cols-4">
-            {lawyers.map((lawyer, i) => (
+            {lawyers?.map((lawyer, i) => (
               <div className="flex flex-col items-center justify-center col-span-1">
                 <div className="relative p-5">
                   <div className={"absolute z-10 w-full h-full -mt-5 -ml-5 rounded-full rounded-tr-none " + backgrounds[i % backgrounds.length]}></div>
@@ -111,7 +101,7 @@ export default function Home() {
                     <h3 className="">{lawyer.name}</h3>
                     <p className="text-blue-600">{lawyer.title}</p>
                     <p className='text-sm'>
-                      Telefon: <a className='underline' href={"tel:+9"+lawyer.telephone.replace(/ /g, '')}>{lawyer.telephone}</a>
+                      Telefon: <a className='underline' href={"tel:+9" + lawyer.phone.replace(/ /g, '')}>{lawyer.phone}</a>
                     </p>
                   </div>
                 </div>
@@ -125,4 +115,13 @@ export default function Home() {
       <Footer />
     </main>
   )
+}
+
+export async function getServerSideProps() {
+  const lawyers = await getLawyers()
+  return {
+    props: {
+      lawyers
+    }
+  }
 }
