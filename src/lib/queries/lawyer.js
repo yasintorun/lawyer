@@ -11,3 +11,16 @@ export const getLawyers = async () => {
         })
     })
 }
+
+export const saveLawyer = async ({name, title, phone, image}) => {
+    return new Promise((resolve, reject) => {
+        DbContext.query(`INSERT INTO lawyers (name, title, phone, image) VALUES ('${name}', '${title}', '${phone}', '${image}')`, 
+        [name, title, phone, image], (err, result) => {
+            if (err) {
+                reject(err);
+            }
+
+            resolve();
+        })
+    });
+}
