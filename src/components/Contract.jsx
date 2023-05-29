@@ -22,7 +22,6 @@ const Contract = () => {
     }
 
     const handleSubmit = () => {
-        console.log(data)
         const isEmailRegex = /\S+@\S+\.\S+/
         if (!isEmailRegex.test(data.email)) {
             showMessage('Lütfen geçerli bir eposta adresi giriniz!')

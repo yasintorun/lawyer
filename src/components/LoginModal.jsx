@@ -15,7 +15,6 @@ const LoginModal = () => {
     }
 
     const handleLogin = (e) => {
-        console.log(data)
     }
 
     return (
