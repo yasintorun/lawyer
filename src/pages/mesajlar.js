@@ -7,9 +7,9 @@ const messages = ({ messages }) => {
         <div>
             <div className="flex justify-center">
                 <div className="md:w-1/2 p-2 my-5">
-                    <Link href="/" className='text-sm underline'>
+                    <Link href="/admin" className='text-sm underline'>
                         &#8592;
-                        Anasayfaya Dön
+                        Admin Paneline Dön
                     </Link>
                     <h1 className="text-2xl font-bold">Mesajlar</h1>
                     <div className="mt-4">

@@ -24,3 +24,16 @@ export const saveLawyer = async ({name, title, phone, image}) => {
         })
     });
 }
+
+export const deleteLawyer = async (id) => {
+    console.log("TAASD, ", id)
+    return new Promise((resolve, reject) => {
+        DbContext.query(`DELETE FROM lawyers WHERE id = ${id}`, (err, result) => {
+            if (err) {
+                reject(err);
+            }
+
+            resolve();
+        })
+    });
+}

@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React, { useState } from 'react'
 
 const newLawyer = () => {
@@ -23,7 +24,7 @@ const newLawyer = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(!data.name || !data.title || !data.phone || !data.image) {
+        if (!data.name || !data.title || !data.phone || !data.image) {
             showMessage('Lütfen tüm alanları doldurunuz.')
             return;
         }
@@ -35,18 +36,18 @@ const newLawyer = () => {
             },
             body: JSON.stringify(data),
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            showMessage(data.message)
-            setData({
-                name: '',
-                title: '',
-                phone: '',
-                image: ''
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                showMessage(data.message)
+                setData({
+                    name: '',
+                    title: '',
+                    phone: '',
+                    image: ''
+                })
+                setSending(false)
             })
-            setSending(false)
-        })
     }
 
     return (
@@ -54,6 +55,10 @@ const newLawyer = () => {
             {/* Use tailwindcss, form data {name, title, phone, image} */}
             <div className="flex justify-center">
                 <div className="md:w-1/2 p-2 my-5">
+                    <Link href="/admin" className='text-sm underline'>
+                        &#8592;
+                        Admin Paneline Dön
+                    </Link>
                     <h1 className="text-2xl font-bold">Yeni Avukat</h1>
                     <div className="mt-4">
                         <form>
