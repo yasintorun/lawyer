@@ -59,7 +59,12 @@ const newLawyer = () => {
                         &#8592;
                         Admin Paneline Dön
                     </Link>
+                    <div className='flex items-center justify-between'>
                     <h1 className="text-2xl font-bold">Yeni Avukat</h1>
+                    <Link href={"/avukatlar"} className="border border-gray-200 rounded-md p-4 hover:bg-red-200 cursor-pointer">
+                        <div className="font-bold">Avukatlar</div>
+                    </Link>
+                    </div>
                     <div className="mt-4">
                         <form>
                             <div className="mb-4">

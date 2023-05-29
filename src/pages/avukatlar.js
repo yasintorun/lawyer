@@ -14,19 +14,19 @@ const avukatlar = ({ lawyers }) => {
     const handleDelete = (id) => {
         console.log(id)
         setDeleting(id)
-        fetch("/api/lawyer?id="+id, {
+        fetch("/api/lawyer?id=" + id, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json"
             },
             // body: JSON.stringify({ id }),
         })
-        .then(res => res.json())
-        .then(data => {
-            console.log(data)
-            showMessage(data.message)
-            setDeleting(0)
-        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                showMessage(data.message)
+                setDeleting(0)
+            })
     }
     return (
         <div>
@@ -36,7 +36,12 @@ const avukatlar = ({ lawyers }) => {
                         &#8592;
                         Admin Paneline Dön
                     </Link>
-                    <h1 className="text-2xl font-bold">Avukatlar</h1>
+                    <div className='flex justify-between items-center'>
+                        <h1 className="text-2xl font-bold">Avukatlar</h1>
+                        <Link href={"/yeni-avukat"} className="border border-gray-200 rounded-md p-4 mb-4 hover:bg-blue-200 cursor-pointer">
+                            <div className="font-bold">Yeni Avukat</div>
+                        </Link>
+                    </div>
                     <div className="mt-4">
                         <table className="table-auto w-full">
                             <thead>
