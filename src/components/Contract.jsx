@@ -67,7 +67,7 @@ const Contract = () => {
                                     <h2 className="text-5xl font-bold text-gray-900 xl:text-6xl">Formu doldur, hukuk büromuzla iletişime geç</h2>
                                 </div>
                                 <p className="text-2xl text-gray-700"></p>
-                                <a href="#_" className="inline-block px-8 py-5 text-xl font-medium text-center text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 ease" data-primary="blue-600" data-rounded="rounded-lg">İletişime Geç</a>
+                                <a href="tel:+905123456789" className="inline-block px-8 py-5 text-xl font-medium text-center text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 ease" data-primary="blue-600" data-rounded="rounded-lg">İletişime Geç</a>
                             </div>
                         </div>
                     </div>

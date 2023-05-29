@@ -43,7 +43,7 @@ const Service = () => {
         },
     })
     return (
-        <div ref={sliderRef} className="keen-slider my-32">
+        <div ref={sliderRef} className="keen-slider my-32" id='services'>
             {services.map((service, idx) => (
                 <div key={idx} className="keen-slider__slide">
                     <div class="flex flex-col items-start col-span-12 space-y-3 sm:col-span-6 xl:col-span-4 shadow border rounded-lg">
