@@ -12,6 +12,7 @@
     "autoprefixer": "10.4.14",
     "daisyui": "^2.51.6",
     "keen-slider": "^6.8.5",
+    "moment": "^2.29.4",
     "mysql": "^2.18.1",
     "next": "13.4.4",
     "postcss": "8.4.24",

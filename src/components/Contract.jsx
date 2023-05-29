@@ -7,6 +7,7 @@ const Contract = () => {
         message: ''
     })
     const [message, setMessage] = useState('')
+    const [sending, setSending] = useState(false)
 
     const handleChange = (e) => {
         const { value, name } = e.target
@@ -31,12 +32,26 @@ const Contract = () => {
             showMessage('Lütfen tüm alanları doldurunuz!')
             return
         }
-        showMessage('Mesajınız başarıyla gönderildi! Teşekkür ederiz :)')
-        setData({
-            name: '',
-            email: '',
-            message: ''
+        setSending(true)
+        fetch("/api/message", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data),
         })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            showMessage(data.message)
+            setData({
+                name: '',
+                email: '',
+                message: ''
+            })
+            setSending(false)
+        })
+
     }
 
     return (
@@ -75,7 +90,9 @@ const Contract = () => {
                                     <textarea name='message' value={data.message} onChange={handleChange} rows={10} className="block w-full px-4 py-4 mt-2 text-xl placeholder-gray-400 bg-gray-200 rounded-lg focus:outline-none focus:ring-4 focus:ring-blue-600 focus:ring-opacity-50" data-primary="blue-600" data-rounded="rounded-lg" placeholder="Mesajınız.." />
                                 </div>
                                 <div className="relative">
-                                    <button type='button' onClick={handleSubmit} className="inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 ease" data-primary="blue-600" data-rounded="rounded-lg">Gönder</button>
+                                    <button type='button' onClick={handleSubmit} disabled={sending} className="inline-block w-full px-5 py-4 text-lg font-medium text-center text-white transition duration-200 bg-blue-600 rounded-lg hover:bg-blue-700 ease" data-primary="blue-600" data-rounded="rounded-lg">
+                                    {sending ? 'Gönderiliyor...' : 'Gönder'}
+                                    </button>
                                 </div>
                             </div>
                         </div>
